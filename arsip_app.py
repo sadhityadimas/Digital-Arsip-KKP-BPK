@@ -35,7 +35,7 @@ conn = connect()
     #st.write(f"{row.City} has a :{row.Rating}:")
 
 #to here
-sheet_url = “https://docs.google.com/spreadsheets/d/1pW0_JJ3NuXDcuIFlQ88v8qPa-YtD1B9dOu-J-JDAyX4/edit#gid=0"
+sheet_url = "https://docs.google.com/spreadsheets/d/1pW0_JJ3NuXDcuIFlQ88v8qPa-YtD1B9dOu-J-JDAyX4/edit#gid=0"
 url_1 = sheet_url.replace(‘/edit#gid=’, ‘/export?format=csv&gid=’)
 tabel1 = pd.read_csv(url_1)
 pilihan_row2 = tabel_arsip(df=tabel1)
