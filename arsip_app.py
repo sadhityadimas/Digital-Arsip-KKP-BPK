@@ -4,7 +4,6 @@ from st_aggrid import AgGrid, GridOptionsBuilder
 from st_aggrid.shared import GridUpdateMode
 from PIL import Image
 import sqlite3
-from gsheetsdb import connect
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -47,9 +46,9 @@ with col2:
     #st.header("Kertas Kerja Pemeriksa")
 
 st.write(
-    """Selamat datang di webapp arsip digital Kertas Kerja Pemeriksa.
-    Webapp ini dibuat menggunakan bahasa pemrograman Python 3.10 dengan streamlit library.
-    Untuk index tabel disimpan menggunakan database sqlite3"""
+    """ \n Selamat datang di webapp arsip digital Kertas Kerja Pemeriksa.\n
+    Webapp ini dibuat menggunakan bahasa pemrograman Python 3.10 dengan streamlit library.\n
+    Database index tabel disimpan menggunakan google spreadsheets"""
 )
 st.write("Silahkan klik pada row tabel yang mana anda ingin lihat arsip digitalnya.")
 
@@ -73,17 +72,14 @@ def tabel_arsip(df: pd.DataFrame):
 
     return selection
 
-#menggunakan sqlite database
-con = sqlite3.connect("asset/arsip.db") #koneksi ke sqlite database
-tabel_index_arsip = pd.read_sql_query("SELECT * from " + choice, con)
+#menggunakan live google spreadsheet
+#@st.cache(ttl=600)
+sheet_url = "https://docs.google.com/spreadsheets/d/1pW0_JJ3NuXDcuIFlQ88v8qPa-YtD1B9dOu-J-JDAyX4/edit#gid=0"
+url_1 = sheet_url.replace('/edit#gid=', '/export?format=csv&gid=') #to get the csv version
+tabel_index_arsip = pd.read_csv(url_1) #to read the csv as pandas dataframe
 
-#jika menggunakan csv
-#tabel_index_arsip = pd.read_csv(
-    #"asset/tabel_kkp.csv"
-#) #ini bisa berupa csv sementara, atau connect ke sqlite tabel
-con.close() #close connection, jika ingin mengedit database, posisi con.close bisa dipaling bawah
+pilihan_row = tabel_arsip(df=tabel_index_arsip)  #call our interactive table aggrid
 
-pilihan_row = tabel_arsip(df=tabel_index_arsip)
 #st.write(pilihan_row['selected_rows'][0]['City'])
 #pilihan_row adalah object berbentuk nested dictionaries
 #jika ingin memilih value gunakan syntax ini pilihan_row['selected_rows'][0]['nama kolom yang mau didisplay valuenya']
@@ -97,5 +93,6 @@ if pilihan_row:
         st.write("Pendapatan kotor rata-rata di kota " , pilihanmu[0]['City'] , ": " , str(pilihanmu[0]['grossincome']))
     else:
         st.write("Anda belum memilih arsip")
+
 
 
