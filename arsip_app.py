@@ -25,7 +25,7 @@ rows = run_query(f'SELECT * FROM "{sheet_url}"')
 
 # Print results.
 for row in rows:
-    st.write(f"{row.name} has a :{row.pet}:")
+    st.write(f"{row.City} has a :{row.Rating}:")
 
 #to here
 
