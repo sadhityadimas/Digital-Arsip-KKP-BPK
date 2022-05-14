@@ -8,6 +8,13 @@ from gsheetsdb import connect
 import warnings
 warnings.filterwarnings('ignore')
 
+
+bpk_icon = Image.open("asset/BPK.ico")
+LOGO_IMAGE = "asset/BPK.png"
+st.set_page_config(
+    layout="centered", page_icon=bpk_icon, page_title="Arsip Digital Kertas Kerja Pemeriksa", initial_sidebar_state="auto"
+) #layout use wide instead of centered
+
 #from here
 # Create a connection object.
 conn = connect()
@@ -21,21 +28,14 @@ def run_query(query):
     return rows
 
 sheet_url = st.secrets["public_gsheets_url"]
-rows = run_query(f'SELECT * FROM "{sheet_url}"')
-
+#rows = run_query(f'SELECT * FROM "{sheet_url}"')
+print(sheet_url)
 # Print results.
-for row in rows:
-    st.write(f"{row.City} has a :{row.Rating}:")
+#for row in rows:
+    #st.write(f"{row.City} has a :{row.Rating}:")
 
 #to here
 
-bpk_icon = Image.open("asset/BPK.ico")
-LOGO_IMAGE = "asset/BPK.png"
-st.set_page_config(
-    layout="centered", page_icon=bpk_icon, page_title="Arsip Digital Kertas Kerja Pemeriksa", initial_sidebar_state="auto"
-) #layout use wide instead of centered
-
-import streamlit as st
 
 with st.sidebar:
     col1, col2 = st.columns([2, 5])
