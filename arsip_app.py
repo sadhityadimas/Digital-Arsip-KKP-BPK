@@ -38,7 +38,6 @@ conn = connect()
 sheet_url = "https://docs.google.com/spreadsheets/d/1pW0_JJ3NuXDcuIFlQ88v8qPa-YtD1B9dOu-J-JDAyX4/edit#gid=0"
 url_1 = sheet_url.replace('/edit#gid=', '/export?format=csv&gid=')
 tabel1 = pd.read_csv(url_1)
-pilihan_row2 = tabel_arsip(df=tabel1)
 
 
 with st.sidebar:
@@ -122,3 +121,6 @@ if pilihan_row:
         st.write("Pendapatan kotor rata-rata di kota " , pilihanmu[0]['City'] , ": " , str(pilihanmu[0]['grossincome']))
     else:
         st.write("Anda belum memilih arsip")
+
+
+pilihan_row2 = tabel_arsip(df=tabel1)
