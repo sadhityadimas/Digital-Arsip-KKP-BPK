@@ -34,7 +34,7 @@ elif option == "Aset TI":
     choice = "aset_ti"
 if option == "Data Kesekretariatan":
     choice = "tabel_kkp"
-
+#bagian ini masih harus di perbaiki, tiap pilihan menampilkan sheet berbeda
 
 col1, col2 = st.columns([2,5])
 
@@ -90,7 +90,7 @@ if pilihan_row:
     pilihanmu = pilihan_row["selected_rows"] #for reproducibility, jika ingin memilih value tinggal pilihanmu['nama kolom']
     if pilihanmu:
         st.write("Kota yang anda pilih: ", pilihanmu[0]['City'])
-        st.write("Pendapatan kotor rata-rata di kota " , pilihanmu[0]['City'] , ": " , str(pilihanmu[0]['grossincome']))
+        st.write("Link untuk mendownload pdf kote ", pilihanmu[0]['City'] , ": " , pilihanmu[0]['Link'])
     else:
         st.write("Anda belum memilih arsip")
 
