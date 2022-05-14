@@ -21,20 +21,24 @@ conn = connect()
 
 # Perform SQL query on the Google Sheet.
 # Uses st.cache to only rerun when the query changes or after 10 min.
-@st.cache(ttl=600)
-def run_query(query):
-    rows = conn.execute(query, headers=1)
-    rows = rows.fetchall()
-    return rows
+#@st.cache(ttl=600)
+#def run_query(query):
+    #rows = conn.execute(query, headers=1)
+    #rows = rows.fetchall()
+    #return rows
 
-sheet_url = st.secrets["public_gsheets_url"]
+#sheet_url = st.secrets["public_gsheets_url"]
 #rows = run_query(f'SELECT * FROM "{sheet_url}"')
-st.write(sheet_url)
+#st.write(sheet_url)
 # Print results.
 #for row in rows:
     #st.write(f"{row.City} has a :{row.Rating}:")
 
 #to here
+sheet_url = “https://docs.google.com/spreadsheets/d/1pW0_JJ3NuXDcuIFlQ88v8qPa-YtD1B9dOu-J-JDAyX4/edit#gid=0"
+url_1 = sheet_url.replace(‘/edit#gid=’, ‘/export?format=csv&gid=’)
+tabel1 = pd.read_csv(url_1)
+pilihan_row2 = tabel_arsip(df=tabel1)
 
 
 with st.sidebar:
