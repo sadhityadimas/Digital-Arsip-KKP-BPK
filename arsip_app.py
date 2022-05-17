@@ -55,7 +55,7 @@ with col2:
     #st.header("Kertas Kerja Pemeriksa")
 
 st.write(
-    """ \n Selamat datang di webapp arsip digital Kertas Kerja Pemeriksa.\n
+    """ \n Selamat datang di webapp arsip digital BPK perwakilan Sumatera Selatan.\n
     Webapp ini dibuat menggunakan bahasa pemrograman Python 3.10 dengan streamlit library.\n
     Database index tabel disimpan menggunakan google spreadsheets"""
 )
@@ -87,12 +87,12 @@ sheet_url = "https://docs.google.com/spreadsheets/d/1pW0_JJ3NuXDcuIFlQ88v8qPa-Yt
 url_1 = sheet_url.replace('/edit#gid=', '/export?format=csv&gid=') #to get the csv version
 tabel_index_arsip = pd.read_csv(url_1) #to read the csv as pandas dataframe
 
-tabel_index_arsip = tabel_index_arsip[tabel_index_arsip['Year'].isin(st.session_state['key'])] #delete session state to only values
+tabel_index_arsip2 = tabel_index_arsip[tabel_index_arsip['Year'].isin(st.session_state['key'])] #delete session state to only values
                                        #== values[0]) & (tabel_index_arsip['Year'] == values[1])]
 #in here you can put pandas table operation such as only display certain years
 #before you feed it as an argumen to our aggregat table below
 
-pilihan_row = tabel_arsip(df=tabel_index_arsip)  #call our interactive table aggrid
+pilihan_row = tabel_arsip(df=tabel_index_arsip2)  #call our interactive table aggrid
 
 #st.write(pilihan_row['selected_rows'][0]['City'])
 #pilihan_row adalah object berbentuk nested dictionaries
