@@ -104,8 +104,8 @@ if pilihan_row:
     #st.json(pilihan_row["selected_rows"])
     pilihanmu = pilihan_row["selected_rows"] #for reproducibility, jika ingin memilih value tinggal pilihanmu['nama kolom']
     if pilihanmu:
-        st.write("Kota yang anda pilih: ", pilihanmu[0]['City'])
-        st.write("Link untuk mendownload pdf kote ", pilihanmu[0]['City'] , ": " )
+        st.write("Arsip yang anda pilih: ", pilihanmu[0]['City'])
+        st.write("Link untuk mendownload pdf arsip ", pilihanmu[0]['City'] , ": " )
         st.write("[View PDF arsip](" + pilihanmu[0]['Link'] + ")")
         #to write hyperlink with shorter clickable use syntax to create a variable link = '[GitHub](http://github.com)'
         #or you can put it inside st.write statement directly as above
