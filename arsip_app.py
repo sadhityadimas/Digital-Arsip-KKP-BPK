@@ -6,7 +6,7 @@ from PIL import Image
 import sqlite3
 import warnings
 warnings.filterwarnings('ignore')
-
+from bokeh.models.widgets import Div
 
 bpk_icon = Image.open("asset/BPK.ico")
 LOGO_IMAGE = "asset/BPK.png"
@@ -26,6 +26,15 @@ with st.sidebar:
     option = st.selectbox(
         'Data subbag apa yang ingin anda cari?',
         ('Kertas Kerja Pemeriksa', 'Aset TI', 'Data Kesekretariatan'))
+
+    values = st.slider(
+        "Data Arsip tahun berapa yang anda cari?",
+        2015, 2022, (2018, 2019))
+    if 'year' not in st.session_state:
+        st.session_state['key'] = values
+    st.write(st.session_state['key'])
+
+    #values dtypes is tuple
 
 #sementara sebelum merubah nama tabel agar hemat line code
 if option == "Kertas Kerja Pemeriksa":
@@ -78,6 +87,11 @@ sheet_url = "https://docs.google.com/spreadsheets/d/1pW0_JJ3NuXDcuIFlQ88v8qPa-Yt
 url_1 = sheet_url.replace('/edit#gid=', '/export?format=csv&gid=') #to get the csv version
 tabel_index_arsip = pd.read_csv(url_1) #to read the csv as pandas dataframe
 
+tabel_index_arsip = tabel_index_arsip[tabel_index_arsip['Year'].isin(st.session_state['key'])]
+                                       #== values[0]) & (tabel_index_arsip['Year'] == values[1])]
+#in here you can put pandas table operation such as only display certain years
+#before you feed it as an argumen to our aggregat table below
+
 pilihan_row = tabel_arsip(df=tabel_index_arsip)  #call our interactive table aggrid
 
 #st.write(pilihan_row['selected_rows'][0]['City'])
@@ -92,6 +106,8 @@ if pilihan_row:
         st.write("Kota yang anda pilih: ", pilihanmu[0]['City'])
         st.write("Link untuk mendownload pdf kote ", pilihanmu[0]['City'] , ": " )
         st.write("[View PDF arsip](" + pilihanmu[0]['Link'] + ")")
+        #to write hyperlink with shorter clickable use syntax to create a variable link = '[GitHub](http://github.com)'
+        #or you can put it inside st.write statement directly as above
     else:
         st.write("Anda belum memilih arsip")
 
