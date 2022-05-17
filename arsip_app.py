@@ -16,12 +16,13 @@ st.set_page_config(
 
 
 with st.sidebar:
-    col1, col2 = st.columns([2, 5])
+    col1, col2 = st.columns([1, 3])
     with col1:
         st.image(bpk_icon, width=150, use_column_width=True)
     #st.sidebar.image(bpk_icon, width=50)
     with col2:
-        st.write("Arsip Digital \n BPK perwakilan Sumatera Selatan")
+        st.write("Arsip Digital\n BPK perwakilan Sumsel")
+        #st.write("")
 
     option = st.selectbox(
         'Data subbag apa yang ingin anda cari?',
@@ -51,7 +52,7 @@ with col1:
     st.image(bpk_icon, width =150, use_column_width=True)
 
 with col2:
-    st.title("Arsip Digital \n Kertas Kerja Pemeriksa")
+    st.title("Arsip Digital \n BPK perwakilan Sumatera Selatan")
     #st.header("Kertas Kerja Pemeriksa")
 
 st.write(
