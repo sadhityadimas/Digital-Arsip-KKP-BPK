@@ -32,7 +32,7 @@ with st.sidebar:
         2015, 2022, (2018, 2019))
     if 'year' not in st.session_state: #experimental using st.session_state, if not wowrking just delete
         st.session_state['key'] = values
-    st.write(st.session_state['key'])
+    #st.write(st.session_state['key'])
 
     #values dtypes is tuple
 
