@@ -58,7 +58,7 @@ with col2:
 st.write(
     """ \n Selamat datang di webapp arsip digital BPK perwakilan Sumatera Selatan.\n
     Webapp ini dibuat menggunakan bahasa pemrograman Python 3.10 dengan streamlit library.\n
-    Database index tabel disimpan menggunakan google spreadsheets"""
+    Database tabel disimpan menggunakan google spreadsheets"""
 )
 st.write("Silahkan klik pada row tabel yang mana anda ingin lihat arsip digitalnya.")
 
