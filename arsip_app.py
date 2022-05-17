@@ -6,7 +6,7 @@ from PIL import Image
 import sqlite3
 import warnings
 warnings.filterwarnings('ignore')
-from bokeh.models.widgets import Div
+
 
 bpk_icon = Image.open("asset/BPK.ico")
 LOGO_IMAGE = "asset/BPK.png"
@@ -30,7 +30,7 @@ with st.sidebar:
     values = st.slider(
         "Data Arsip tahun berapa yang anda cari?",
         2015, 2022, (2018, 2019))
-    if 'year' not in st.session_state:
+    if 'year' not in st.session_state: #experimental using st.session_state, if not wowrking just delete
         st.session_state['key'] = values
     st.write(st.session_state['key'])
 
@@ -87,7 +87,7 @@ sheet_url = "https://docs.google.com/spreadsheets/d/1pW0_JJ3NuXDcuIFlQ88v8qPa-Yt
 url_1 = sheet_url.replace('/edit#gid=', '/export?format=csv&gid=') #to get the csv version
 tabel_index_arsip = pd.read_csv(url_1) #to read the csv as pandas dataframe
 
-tabel_index_arsip = tabel_index_arsip[tabel_index_arsip['Year'].isin(st.session_state['key'])]
+tabel_index_arsip = tabel_index_arsip[tabel_index_arsip['Year'].isin(st.session_state['key'])] #delete session state to only values
                                        #== values[0]) & (tabel_index_arsip['Year'] == values[1])]
 #in here you can put pandas table operation such as only display certain years
 #before you feed it as an argumen to our aggregat table below
