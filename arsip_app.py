@@ -21,7 +21,7 @@ with st.sidebar:
         st.image(bpk_icon, width=150, use_column_width=True)
     #st.sidebar.image(bpk_icon, width=50)
     with col2:
-        st.write("Arsip Digital \n Kertas Kerja Pemeriksa")
+        st.write("Arsip Digital \n BPK perwakilan Sumatera Selatan")
 
     option = st.selectbox(
         'Data subbag apa yang ingin anda cari?',
