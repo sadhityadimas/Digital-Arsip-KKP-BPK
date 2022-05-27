@@ -11,7 +11,7 @@ warnings.filterwarnings('ignore')
 bpk_icon = Image.open("asset/BPK.ico")
 LOGO_IMAGE = "asset/BPK.png"
 st.set_page_config(
-    layout="centered", page_icon=bpk_icon, page_title="Arsip Digital Kertas Kerja Pemeriksa", initial_sidebar_state="auto"
+    layout="centered", page_icon=bpk_icon, page_title="Arsip Digital Sarana dan Prasarana", initial_sidebar_state="auto"
 ) #layout use wide instead of centered
 
 
@@ -25,8 +25,8 @@ with st.sidebar:
         #st.write("")
 
     option = st.selectbox(
-        'Data subbag apa yang ingin anda cari?',
-        ('Kertas Kerja Pemeriksa', 'Aset TI', 'Data Kesekretariatan'))
+        'Data apa yang ingin anda cari?',
+        ('Kendaraan', 'Bukti Pajak', 'Sertifikat'))
 
     values = st.slider(
         "Data Arsip tahun berapa yang anda cari?",
@@ -38,11 +38,11 @@ with st.sidebar:
     #values dtypes is tuple
 
 #sementara sebelum merubah nama tabel agar hemat line code
-if option == "Kertas Kerja Pemeriksa":
+if option == "Kendaraan":
     choice = "tabel_kkp"
-elif option == "Aset TI":
+elif option == "Bukti Pajak":
     choice = "aset_ti"
-if option == "Data Kesekretariatan":
+if option == "Sertifikat":
     choice = "tabel_kkp"
 #bagian ini masih harus di perbaiki, tiap pilihan menampilkan sheet berbeda
 
@@ -56,8 +56,8 @@ with col2:
     #st.header("Kertas Kerja Pemeriksa")
 
 st.write(
-    """ \n Selamat datang di webapp arsip digital BPK perwakilan Sumatera Selatan.\n
-    Webapp ini dibuat menggunakan bahasa pemrograman Python 3.10 dengan streamlit library.\n
+    """ \n Selamat datang di webapp arsip digital sarana dan prasarana BPK perwakilan Sumatera Selatan.\n
+    Webapp ini dibuat menggunakan bahasa pemrograman Python 3.10 dengan framework streamlit.\n
     Database tabel disimpan menggunakan google spreadsheets"""
 )
 st.write("Silahkan klik pada row tabel yang mana anda ingin lihat arsip digitalnya.")
